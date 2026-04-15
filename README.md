@@ -9,6 +9,16 @@
 
 ## 快速开始（后端）
 
+### 0) Docker 一键启动（推荐）
+
+```bash
+export APP_JWT_SECRET='change-me-change-me-change-me-change-me'
+docker compose up -d --build
+```
+
+- OpenAPI：`http://localhost:8000/docs`
+- 健康检查：`GET http://localhost:8000/health`
+
 ### 1) 启动 Postgres
 
 ```bash
@@ -26,8 +36,8 @@ cp services/api/.env.example services/api/.env
 ### 3) 安装依赖 & 初始化数据库
 
 ```bash
-python -m venv .venv
-. .venv/bin/activate
+conda create -n tandian-fupan python=3.12 -y
+conda activate tandian-fupan
 pip install -r services/api/requirements.txt
 alembic -c services/api/alembic.ini upgrade head
 ```

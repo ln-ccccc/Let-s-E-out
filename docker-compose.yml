@@ -9,6 +9,18 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
+  api:
+    build:
+      context: ./services/api
+    environment:
+      APP_ENV: development
+      APP_JWT_SECRET: ${APP_JWT_SECRET:-change-me-change-me-change-me-change-me}
+      APP_JWT_EXPIRES_MINUTES: 43200
+      APP_DATABASE_URL: postgresql+psycopg://app:app@db:5432/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
 
 volumes:
   db_data:
