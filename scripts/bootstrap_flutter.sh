@@ -16,7 +16,7 @@ mkdir -p "$APPS_DIR"
 
 if [ ! -f "$APP_DIR/pubspec.yaml" ]; then
   rm -rf "$APP_DIR"
-  flutter create "$APP_DIR" --org com.example --project-name tandian_fupan --platforms android,ios
+  flutter create "$APP_DIR" --org com.example --project-name tandian_fupan --platforms android,ios,web,linux
 fi
 
 rm -rf "$APP_DIR/lib"
