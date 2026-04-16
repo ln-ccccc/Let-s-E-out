@@ -49,25 +49,57 @@ class _OtpPageState extends State<OtpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('输入验证码')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(widget.phone),
-            const SizedBox(height: 12),
-            TextField(
-              controller: _code,
-              keyboardType: TextInputType.number,
-              decoration: const InputDecoration(labelText: '验证码'),
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: _loading ? null : _verify,
-              child: _loading ? const CircularProgressIndicator() : const Text('登录'),
-            ),
-          ],
+      appBar: AppBar(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 24),
+              const Text(
+                '输入验证码',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: -0.5,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '已发送至 ${widget.phone}',
+                style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 48),
+              TextField(
+                controller: _code,
+                keyboardType: TextInputType.number,
+                maxLength: 6,
+                autofocus: true,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 24, letterSpacing: 8, fontWeight: FontWeight.bold),
+                decoration: const InputDecoration(
+                  counterText: '',
+                  hintText: '000000',
+                  hintStyle: TextStyle(color: Colors.black12),
+                ),
+              ),
+              const SizedBox(height: 32),
+              FilledButton(
+                onPressed: _loading ? null : _verify,
+                child: _loading 
+                    ? const SizedBox(
+                        height: 20, 
+                        width: 20, 
+                        child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2)
+                      ) 
+                    : const Text('登录'),
+              ),
+            ],
+          ),
         ),
       ),
     );

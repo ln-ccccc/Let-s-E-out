@@ -63,25 +63,60 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('登录')),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text('手机号验证码（开发环境验证码固定为 000000）'),
-            const SizedBox(height: 12),
-            TextField(
-              controller: _phone,
-              keyboardType: TextInputType.phone,
-              decoration: const InputDecoration(labelText: '手机号'),
-            ),
-            const SizedBox(height: 16),
-            FilledButton(
-              onPressed: _loading ? null : _requestOtp,
-              child: _loading ? const CircularProgressIndicator() : const Text('获取验证码'),
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 80),
+              const Text(
+                '欢迎使用',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: -0.5,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                '记录你的每一次探店体验',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 48),
+              TextField(
+                controller: _phone,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  labelText: '手机号',
+                  prefixIcon: Icon(Icons.phone_iphone_rounded),
+                ),
+              ),
+              const SizedBox(height: 24),
+              FilledButton(
+                onPressed: _loading ? null : _requestOtp,
+                child: _loading 
+                    ? const SizedBox(
+                        height: 20, 
+                        width: 20, 
+                        child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2)
+                      ) 
+                    : const Text('获取验证码'),
+              ),
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: Text(
+                  '开发环境验证码固定为 000000',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey.shade400, fontSize: 12),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -50,11 +50,30 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        indicatorColor: const Color(0xFF2C3E50).withOpacity(0.1),
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.receipt_long), label: '我的'),
-          NavigationDestination(icon: Icon(Icons.public), label: '公开'),
-          NavigationDestination(icon: Icon(Icons.bookmark), label: '收藏'),
-          NavigationDestination(icon: Icon(Icons.person), label: '我的页'),
+          NavigationDestination(
+            icon: Icon(Icons.receipt_long_outlined), 
+            selectedIcon: Icon(Icons.receipt_long, color: Color(0xFF2C3E50)),
+            label: '我的'
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.public_outlined), 
+            selectedIcon: Icon(Icons.public, color: Color(0xFF2C3E50)),
+            label: '公开'
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.bookmark_outline), 
+            selectedIcon: Icon(Icons.bookmark, color: Color(0xFF2C3E50)),
+            label: '收藏'
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline), 
+            selectedIcon: Icon(Icons.person, color: Color(0xFF2C3E50)),
+            label: '我的页'
+          ),
         ],
       ),
     );
